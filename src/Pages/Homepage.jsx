@@ -48,9 +48,9 @@ const Homepage = () => {
     
   return (
     <div className="p-10 ">
-        <div className="flex mobile:flex-col laptop:flex-row mobile:items-start laptop:justify-between laptop:items-center">
+        <div className="flex flex-col w-full md:flex-row items-start md:justify-between md:items-center md:mx-[3rem]">
 
-            <div className='flex items-center shadow-md rounded-md h-10 px-3 bg-white dark:bg-articleColor dark:text-textColor laptop:w-[40%] py-6 mobile:w-[80%]'>
+            <div className='flex items-center shadow-md rounded-md h-10 px-3 bg-white dark:bg-articleColor dark:text-textColor md:w-[40%] py-6 w-[80%]'>
                 <CiSearch className="text-gray-400 text-xl"/>
                 <input
                 type="search"
@@ -64,14 +64,14 @@ const Homepage = () => {
                 />
             </div>
 
-            <div className="space-y-4 lg:space-y-0 lg:space-x-4 lg:flex-row lg:items-center lg:w-1/2 py-6 mobile:w-[60%] laptop:w-[30%] laptop:mr-[6%]">
+            <div className="w-[60%] md:w-[20%] py-6 md:mr-[14%] lg:mr-[8%]">
                 <select
                     value={selectedRegion}
                     id="region"
                     name="region"
                     onChange={onRegionChange}
                         autoComplete="region"
-                        className="shadow-md rounded-md h-10 px-3 bg-white dark:bg-articleColor text-sm text-gray-700 dark:text-textColor w-full lg:w-auto outline-none"
+                        className="shadow-md rounded-md h-10 px-3 bg-white dark:bg-articleColor text-sm text-gray-700 dark:text-textColor w-full outline-none"
                         >
                     <option value="All">Filter by Region</option>
                     <option value="Asia">Asia</option>
@@ -83,7 +83,7 @@ const Homepage = () => {
             </div>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 bg-slate-100 lg:grid-cols-4 gap-16 p-4 bg-white-50 dark:bg-darkBg md:mx-8 ">
+        <div className="grid grid-cols-1 min-[450px]:grid-cols-2 bg-lightBg lg:grid-cols-4 gap-16 p-4 bg-white-50 dark:bg-darkBg md:mx-8 ">
           {
           loading ? (
             <Loader />

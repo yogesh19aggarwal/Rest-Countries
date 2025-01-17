@@ -18,7 +18,7 @@ const App = () => {
   }, [dark])
 
   return (
-    <div className='bg-lightBg dark:bg-darkBg text-lightText dark:text-textColor min-h-screen transition-colors duration-300 font-sans p-0'>
+    <div className='bg-lightBg dark:bg-darkBg text-lightText dark:text-textColor min-h-screen transition-colors duration-100 font-sans p-0'>
       <Navbar dark={dark}
       setDark = {setDark}/>
 
