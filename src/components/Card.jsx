@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 const Card = ({country}) => {
   return (
     <>
-     <Link to={`countries/${country.cca3}`} className="text-inherit no-underline ">
+     <Link to={`country/${country.cca3}`} className="text-inherit no-underline ">
             <div className="bg-white dark:bg-articleColor shadow-md rounded-lg overflow-hidden hover:scale-105 transition-transform duration-200" style={{ height: 'calc(100% + 0.5rem)' }}>
                 <img src={country.flags.png} alt={country.name.common} className="w-full h-40 object-cover" />
                 <div className="p-4 text-gray-900 dark:text-textColor">

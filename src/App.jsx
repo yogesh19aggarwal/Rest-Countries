@@ -24,7 +24,7 @@ const App = () => {
 
       <Routes>
         <Route path='/' element= {<Homepage/>}/>
-        <Route path='/countries/:cca3' element={<CountryCard/>}/>
+        <Route path='/country/:cca3' element={<CountryCard/>}/>
         <Route path='*' element={<NotFound/>}/>
       </Routes>
     </div>
