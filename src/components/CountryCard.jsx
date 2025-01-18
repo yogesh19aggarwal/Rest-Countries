@@ -14,8 +14,6 @@ const CountryDetails = () => {
       .then((res) => {
         setCountry(res.data[0]);
         setLoading(false);
-        console.log(res.data[0]);
-        
       })
       .catch((error) => {
         console.error("Error fetching country data:", error);
