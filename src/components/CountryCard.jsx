@@ -5,14 +5,17 @@ import { AxiosInstance } from "./AxiosInstance";
 import Loader from "./Loader";
 
 const CountryDetails = () => {
-  const [country, setCountry] = useState({});
+  const [country, setCountry] = useState([]);
   const { cca3 } = useParams();
   const [loading, setLoading] = useState(true);
+  const [filterCountry, setFilterCountry] = useState({});
 
   useEffect(() => {
-    AxiosInstance.get(`/alpha/${cca3}`)
+    AxiosInstance.get(`all`)
       .then((res) => {
-        setCountry(res.data[0]);
+        setCountry(res.data);
+        const selectedCountry = res.data.find((coun) => coun.cca3 === cca3);
+        setFilterCountry(selectedCountry || {});
         setLoading(false);
       })
       .catch((error) => {
@@ -21,7 +24,7 @@ const CountryDetails = () => {
       });
   }, [cca3]);
 
-  if (loading) return <Loader />;
+  if (loading) return <Loader />;  
 
   const {
     flags,
@@ -34,7 +37,8 @@ const CountryDetails = () => {
     currencies,
     languages,
     borders,
-  } = country;
+  } = filterCountry;
+  
 
   const currencyNames = currencies
     ? Object.values(currencies).map((currency) => currency.name).join(", ")
@@ -102,7 +106,7 @@ const CountryDetails = () => {
               borders.map((border) => (
                 <Link key={border} to={`/country/${border}`}>
                   <button className="bg-gray-100 dark:bg-articleColor text-gray-900 dark:text-textColor px-4 py-2 rounded-md shadow-md">
-                    {border}
+                    {country.find((coun)=>coun.cca3 === border).name.common}
                   </button>
                 </Link>
               ))
