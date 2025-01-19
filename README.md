@@ -49,7 +49,6 @@ rest-countries/
 ├── README.md
 ├── tailwind.config.js
 ├── vite.config.js
-├── vercel.config.js
 
 ```
 
