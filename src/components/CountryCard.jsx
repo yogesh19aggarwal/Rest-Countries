@@ -65,54 +65,56 @@ const CountryDetails = () => {
           />
         </div>
 
-        <div className="flex flex-col gap-4">
-          <div>
-            <h2 className="min-[430px]:text-2xl text-sm lg:text-5xl font-bold mb-4">{name?.common || "N/A"}</h2>
-            <h5 className="font-semibold text-sm min-[430px]:text-lg lg:text-2xl">
-              Population:{" "}
-              <span className="font-light">
-                {population ? population.toLocaleString() : "N/A"}
-              </span>
-            </h5>
-            <h5 className="font-semibold text-sm min-[430px]:text-lg lg:text-2xl">
-              Region: <span className="font-light">{region || "N/A"}</span>
-            </h5>
-            <h5 className="font-semibold text-sm min-[430px]:text-lg lg:text-2xl">
-              Sub Region: <span className="font-light">{subregion || "N/A"}</span>
-            </h5>
-            <h5 className="font-semibold text-sm min-[430px]:text-lg lg:text-2xl">
-              Capital: <span className="font-light">{capital?.join(", ") || "N/A"}</span>
-            </h5>
+        <div className="flex flex-col gap-4 justify-center">
+          <h2 className="min-[430px]:text-2xl text-sm lg:text-2xl font-bold mb-4">{name?.common || "N/A"}</h2>
+          <div className="flex flex-col sm:flex-row gap-x-8">
+            <div className="flex flex-col gap-2">
+              <h5 className="font-semibold text-sm min-[430px]:text-lg lg:text-1xl">
+                Population:{" "}
+                <span className="font-light">
+                  {population ? population.toLocaleString() : "N/A"}
+                </span>
+              </h5>
+              <h5 className="font-semibold text-sm min-[430px]:text-lg lg:text-1xl">
+                Region: <span className="font-light">{region || "N/A"}</span>
+              </h5>
+              <h5 className="font-semibold text-sm min-[430px]:text-lg lg:text-1xl">
+                Sub Region: <span className="font-light">{subregion || "N/A"}</span>
+              </h5>
+              <h5 className="font-semibold text-sm min-[430px]:text-lg lg:text-1xl">
+                Capital: <span className="font-light">{capital?.join(", ") || "N/A"}</span>
+              </h5>
+            </div>
+
+            <div className="flex mt-4 sm:mt-0 flex-col gap-2">
+              <h5 className="font-semibold text-sm min-[430px]:text-lg lg:text-1xl">
+                Top Level Domain:{" "}
+                <span className="font-light">{tld ? tld.join(", ") : "N/A"}</span>
+              </h5>
+              <h5 className="font-semibold text-sm min-[430px]:text-lg lg:text-1xl">
+                Currencies: <span className="font-light">{currencyNames}</span>
+              </h5>
+              <h5 className="font-semibold text-sm min-[430px]:text-lg lg:text-1xl">
+                Languages: <span className="font-light">{languageNames}</span>
+              </h5>
+            </div>
           </div>
 
-          <div className="mt-0">
-            <h5 className="font-semibold text-sm min-[430px]:text-lg lg:text-2xl">
-              Top Level Domain:{" "}
-              <span className="font-light">{tld ? tld.join(", ") : "N/A"}</span>
-            </h5>
-            <h5 className="font-semibold text-sm min-[430px]:text-lg lg:text-2xl">
-              Currencies: <span className="font-light">{currencyNames}</span>
-            </h5>
-            <h5 className="font-semibold text-sm min-[430px]:text-lg lg:text-2xl">
-              Languages: <span className="font-light">{languageNames}</span>
-            </h5>
-          </div>
-        </div>
-
-        <div className="mt-4 sm:mt-12">
-          <h3 className="text-sm min-[430px]:text-lg font-semibold">Border Countries:</h3>
-          <div className="flex flex-wrap gap-2 mt-4">
-            {borders ? (
-              borders.map((border) => (
-                <Link key={border} to={`/country/${border}`}>
-                  <button className="bg-gray-100 dark:bg-articleColor text-gray-900 dark:text-textColor px-4 py-2 rounded-md shadow-md">
-                    {country.find((coun)=>coun.cca3 === border).name.common}
-                  </button>
-                </Link>
-              ))
-            ) : (
-              <span className="text-gray-600 dark:text-gray-400">N/A</span>
-            )}
+          <div className="mt-8 sm:mt-12 flex items-center">
+            <h3 className="text-sm min-[430px]:text-lg font-semibold min-[430px]:mr-4">Border Countries:</h3>
+            <div className="flex flex-wrap gap-2 mt-0">
+              {borders ? (
+                borders.map((border) => (
+                  <Link key={border} to={`/country/${border}`}>
+                    <button className="bg-gray-100 dark:bg-articleColor text-gray-900 dark:text-textColor px-4 py-2 rounded-md shadow-md">
+                      {country.find((coun)=>coun.cca3 === border).name.common}
+                    </button>
+                  </Link>
+                ))
+              ) : (
+                <span className="text-gray-600 dark:text-gray-400">N/A</span>
+              )}
+            </div>
           </div>
         </div>
       </article>
