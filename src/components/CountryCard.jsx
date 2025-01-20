@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { IoMdArrowBack } from "react-icons/io";
+
 import { AxiosInstance } from "../api/AxiosInstance";
 import Loader from "./Loader";
 
@@ -10,6 +11,7 @@ const CountryDetails = () => {
   const [loading, setLoading] = useState(true);
   const [filterCountry, setFilterCountry] = useState({});
 
+  // Fetching the Data from APi
   useEffect(() => {
     AxiosInstance.get(`all`)
       .then((res) => {

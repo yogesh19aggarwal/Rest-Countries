@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { MdOutlineDarkMode } from "react-icons/md";
 
 const Navbar = ({ dark, setDark }) => {
+  //toggling the darkmode
   const handleMode = () => {
     setDark((prev) => !prev);
   };

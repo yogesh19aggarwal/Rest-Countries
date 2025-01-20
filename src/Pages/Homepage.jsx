@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { CiSearch } from "react-icons/ci";
+
 import Loader from "../components/Loader";
 import { AxiosInstance } from "../api/AxiosInstance";
 import Card from "../components/Card";
@@ -11,6 +12,7 @@ const Homepage = () => {
   const [loading, setLoading] = useState(false);
   const [contriesRegion, setCountriesRegion] = useState([]);
 
+  // Fetching data from api
   useEffect(() => {
     setLoading(true);
     AxiosInstance.get("all/")
@@ -26,6 +28,7 @@ const Homepage = () => {
       });
   }, []);
 
+  // Handling the search input
   const handleInput = (value) => {
     setInputValue(value);
     const filteredCountries = contriesRegion.filter((country) =>
@@ -34,6 +37,7 @@ const Homepage = () => {
     setCountriesRegion(filteredCountries);
   };
 
+  // When region change
   const onRegionChange = (e) => {
     const selected = e.target.value;
     setSelectedRegion(selected);
@@ -71,7 +75,7 @@ const Homepage = () => {
             name="region"
             onChange={onRegionChange}
             autoComplete="region"
-            className="shadow-md rounded-md h-10 px-3 bg-white dark:bg-articleColor text-sm text-gray-700 dark:text-textColor w-full outline-none"
+            className="shadow-md appearance-none rounded-md h-10 px-3 pr-2 bg-white dark:bg-articleColor text-sm text-gray-700 dark:text-textColor w-full outline-none"
           >
             <option value="All">Filter by Region</option>
             <option value="Asia">Asia</option>
