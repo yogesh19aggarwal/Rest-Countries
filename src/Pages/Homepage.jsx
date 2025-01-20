@@ -44,6 +44,7 @@ const Homepage = () => {
   const onRegionChange = (e) => {
     const selected = e.target.value;
     setSelectedRegion(selected);
+    setInputValue("");
     if (selected === "All") {
       setCountriesRegion(countries);
     } else {
