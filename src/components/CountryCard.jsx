@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { IoMdArrowBack } from "react-icons/io";
-import { AxiosInstance } from "./AxiosInstance";
+import { AxiosInstance } from "../api/AxiosInstance";
 import Loader from "./Loader";
 
 const CountryDetails = () => {
@@ -24,7 +24,7 @@ const CountryDetails = () => {
       });
   }, [cca3]);
 
-  if (loading) return <Loader />;  
+  if (loading) return <Loader />;
 
   const {
     flags,
@@ -38,14 +38,13 @@ const CountryDetails = () => {
     languages,
     borders,
   } = filterCountry;
-  
 
   const currencyNames = currencies
-    ? Object.values(currencies).map((currency) => currency.name).join(", ")
+    ? Object.values(currencies)
+        .map((currency) => currency.name)
+        .join(", ")
     : "N/A";
-  const languageNames = languages
-    ? Object.values(languages).join(", ")
-    : "N/A";
+  const languageNames = languages ? Object.values(languages).join(", ") : "N/A";
 
   return (
     <section className="p-12 max-w-7xl mx-auto min-h-screen relative ">
@@ -66,7 +65,9 @@ const CountryDetails = () => {
         </div>
 
         <div className="flex flex-col gap-4 justify-center">
-          <h2 className="min-[430px]:text-2xl text-sm lg:text-2xl font-bold mb-4">{name?.common || "N/A"}</h2>
+          <h2 className="min-[430px]:text-2xl text-sm lg:text-2xl font-bold mb-4">
+            {name?.common || "N/A"}
+          </h2>
           <div className="flex flex-col sm:flex-row gap-x-8">
             <div className="flex flex-col gap-2">
               <h5 className="font-semibold text-sm min-[430px]:text-lg lg:text-1xl">
@@ -79,17 +80,23 @@ const CountryDetails = () => {
                 Region: <span className="font-light">{region || "N/A"}</span>
               </h5>
               <h5 className="font-semibold text-sm min-[430px]:text-lg lg:text-1xl">
-                Sub Region: <span className="font-light">{subregion || "N/A"}</span>
+                Sub Region:{" "}
+                <span className="font-light">{subregion || "N/A"}</span>
               </h5>
               <h5 className="font-semibold text-sm min-[430px]:text-lg lg:text-1xl">
-                Capital: <span className="font-light">{capital?.join(", ") || "N/A"}</span>
+                Capital:{" "}
+                <span className="font-light">
+                  {capital?.join(", ") || "N/A"}
+                </span>
               </h5>
             </div>
 
             <div className="flex mt-4 sm:mt-0 flex-col gap-2">
               <h5 className="font-semibold text-sm min-[430px]:text-lg lg:text-1xl">
                 Top Level Domain:{" "}
-                <span className="font-light">{tld ? tld.join(", ") : "N/A"}</span>
+                <span className="font-light">
+                  {tld ? tld.join(", ") : "N/A"}
+                </span>
               </h5>
               <h5 className="font-semibold text-sm min-[430px]:text-lg lg:text-1xl">
                 Currencies: <span className="font-light">{currencyNames}</span>
@@ -101,13 +108,15 @@ const CountryDetails = () => {
           </div>
 
           <div className="mt-8 sm:mt-12 flex items-center">
-            <h3 className="text-sm min-[430px]:text-lg font-semibold min-[430px]:mr-4">Border Countries:</h3>
+            <h3 className="text-sm min-[430px]:text-lg font-semibold min-[430px]:mr-4">
+              Border Countries:
+            </h3>
             <div className="flex flex-wrap gap-2 mt-0">
               {borders ? (
                 borders.map((border) => (
                   <Link key={border} to={`/country/${border}`}>
                     <button className="bg-gray-100 dark:bg-articleColor text-gray-900 dark:text-textColor px-4 py-2 rounded-md shadow-md">
-                      {country.find((coun)=>coun.cca3 === border).name.common}
+                      {country.find((coun) => coun.cca3 === border).name.common}
                     </button>
                   </Link>
                 ))
