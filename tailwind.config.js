@@ -2,11 +2,6 @@
 export const darkMode = "class";
 export const content = ["./index.html", "./src/**/*.{js,jsx,ts,tsx}"];
 export const theme = {
-  // screens: {
-  //   mobile: "300px",
-  //   laptop: "600px",
-  //   desktop: "1440px",
-  // },
   extend: {
     colors: {
       darkBg: "hsl(207, 26%, 17%)",
