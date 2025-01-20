@@ -10,9 +10,8 @@ const Homepage = () => {
   const [inputValue, setInputValue] = useState("");
   const [selectedRegion, setSelectedRegion] = useState("none");
   const [loading, setLoading] = useState(false);
-  const [contriesRegion, setCountriesRegion] = useState([]);
+  const [countriesRegion, setCountriesRegion] = useState([]);
 
-  // Fetching data from api
   useEffect(() => {
     setLoading(true);
     AxiosInstance.get("all/")
@@ -28,16 +27,20 @@ const Homepage = () => {
       });
   }, []);
 
-  // Handling the search input
-  const handleInput = (value) => {
+  const handleInput = (e) => {
+    const value = e.target.value;
     setInputValue(value);
-    const filteredCountries = contriesRegion.filter((country) =>
-      country.name.common.toLowerCase().includes(value.toLowerCase())
-    );
-    setCountriesRegion(filteredCountries);
+
+    if (value.trim() === "") {
+      setCountriesRegion(countries);
+    } else {
+      const filteredCountries = countries.filter((country) =>
+        country.name.common.toLowerCase().includes(value.toLowerCase())
+      );
+      setCountriesRegion(filteredCountries);
+    }
   };
 
-  // When region change
   const onRegionChange = (e) => {
     const selected = e.target.value;
     setSelectedRegion(selected);
@@ -61,7 +64,7 @@ const Homepage = () => {
             value={inputValue}
             id="country-search"
             name="countrySearch"
-            onChange={(e) => handleInput(e.target.value)}
+            onChange={handleInput}
             placeholder="Search for a country..."
             autoComplete="country"
             className="w-full outline-none pl-2 text-sm text-gray-600 dark:text-textColor bg-transparent"
@@ -90,7 +93,7 @@ const Homepage = () => {
         {loading ? (
           <Loader />
         ) : (
-          contriesRegion.map((country, index) => (
+          countriesRegion.map((country, index) => (
             <Card key={index} country={country} />
           ))
         )}
