@@ -58,6 +58,7 @@ const Homepage = () => {
   return (
     <div className="p-10 ">
       <div className="flex flex-col w-full md:flex-row items-start md:justify-between md:items-center md:mx-[3rem]">
+        {/* Search bar implementation */}
         <div className="flex items-center shadow-md rounded-md h-10 px-3 bg-white dark:bg-articleColor dark:text-textColor md:w-[40%] py-6 w-[80%]">
           <CiSearch className="text-gray-400 text-xl" />
           <input
@@ -72,6 +73,7 @@ const Homepage = () => {
           />
         </div>
 
+        {/* Region selection */}
         <div className="w-[60%] md:w-[20%] py-6 md:mr-[14%] lg:mr-[8%]">
           <select
             value={selectedRegion}
@@ -90,6 +92,8 @@ const Homepage = () => {
           </select>
         </div>
       </div>
+
+      {/* Loading all the card */}
       <div className="grid grid-cols-1 min-[450px]:grid-cols-2 bg-lightBg lg:grid-cols-4 gap-16 p-4 bg-white-50 dark:bg-darkBg md:mx-8 ">
         {loading ? (
           <Loader />
